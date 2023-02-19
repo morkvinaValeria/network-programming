@@ -1,12 +1,13 @@
 use getopt::Opt;
-use std::net::{SocketAddr, ToSocketAddrs};
+use std::net::{ToSocketAddrs};
 
 fn main() {
     let args: Vec<String> = std::env::args().collect();
-    let mut opts = getopt::Parser::new(&args, "a:b:");
+    let mut opts = getopt::Parser::new(&args, "a:b:v");
 
     let mut node = String::new();
     let mut port = String::new();
+    let mut ip_version = String::new();
 
     loop {
         match opts.next().transpose() {
@@ -14,6 +15,7 @@ fn main() {
             Ok(Some(opt)) => match opt {
                 Opt('a', Some(arg)) => node = arg.clone(),
                 Opt('b', Some(arg)) => port = arg.clone(),
+                Opt('v', Some(arg)) => ip_version = arg.clone(),
                 _ => unreachable!(),
             },
             Err(_) => println!("Input is invalid")
@@ -30,7 +32,10 @@ fn main() {
             Some(sock_addr) => {
                 let s_ip = sock_addr.ip().to_string();
                 let s_port = sock_addr.port().to_string();
-                if(s_ip.contains(':')){
+                if s_ip.contains(':') && ip_version = '6'{
+                    println!("\nSocket address:\n address: {s_ip}, port: {s_port}")
+                }
+                if s_ip.contains('.') && ip_version = '4'{
                     println!("\nSocket address:\n address: {s_ip}, port: {s_port}")
                 }
             }
