@@ -1,7 +1,7 @@
 use getopt::Opt;
 
 fn main() {
-    let mut args: Vec<String> = std::env::args().collect();
+    let args: Vec<String> = std::env::args().collect();
     let mut opts = getopt::Parser::new(&args, "a:b:c:");
 
     let mut network_address = String::new();
@@ -22,7 +22,7 @@ fn main() {
     }
 
     let network_address_plus_port = [network_address, port].join(":");
-    let network_name_plus_port = [network_name, port].join(":");
+    let network_name_plus_port = [network_name, port.clone()].join(":");
     println!("{}", network_address_plus_port);
     println!("{}", network_name_plus_port);
 }
