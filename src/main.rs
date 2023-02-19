@@ -25,10 +25,10 @@ fn main() {
 
     let mut addrs_iter = node_plus_port.to_socket_addrs().unwrap();
     loop{
-        match addrs_iter.next().transpose() {
+        match addrs_iter.next() {
             Ok(None) => break,
             Ok(Some(sock_addr)) => {
-                let  = sock_addr.ip().to_string();
+                let s_ip = sock_addr.ip().to_string();
                 let s_port = sock_addr.port().to_string();
                 println!("Socket address:\n address: {s_ip}, port: {s_port}")
             }
