@@ -1,9 +1,9 @@
 use getopt::Opt;
-use std::net::{SocketAddr, ToSocketAddrs};
+use std::net::{ToSocketAddrs};
 
 fn main() {
     let args: Vec<String> = std::env::args().collect();
-    let mut opts = getopt::Parser::new(&args, "a:b:v");
+    let mut opts = getopt::Parser::new(&args, "a:b:v:");
 
     let mut node = String::new();
     let mut port = String::new();
