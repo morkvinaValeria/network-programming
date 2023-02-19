@@ -15,7 +15,10 @@ fn main() {
             Ok(Some(opt)) => match opt {
                 Opt('a', Some(arg)) => node = arg.clone(),
                 Opt('b', Some(arg)) => port = arg.clone(),
-                Opt('v', Some(arg)) => ip_version = arg.clone(),
+                Opt('v', Some(arg)) => {
+                    let clone = arg.clone();
+                    ip_version = clone.trim();
+                },
                 _ => unreachable!(),
             },
             Err(_) => println!("Input is invalid")
@@ -32,10 +35,10 @@ fn main() {
             Some(sock_addr) => {
                 let s_ip = sock_addr.ip().to_string();
                 let s_port = sock_addr.port().to_string();
-                if s_ip.contains(':') && ip_version == "6"{
+                if is_ipv6(sock_addr) && ip_version == "6"{
                     println!("\nSocket address:\n address: {s_ip}, port: {s_port}")
                 }
-                if s_ip.contains('.') && ip_version == "4"{
+                if is_ipv4(sock_addr) && ip_version == "4"{
                     println!("\nSocket address:\n address: {s_ip}, port: {s_port}")
                 }
             }
