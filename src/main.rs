@@ -32,10 +32,10 @@ fn main() {
             Some(sock_addr) => {
                 let s_ip = sock_addr.ip().to_string();
                 let s_port = sock_addr.port().to_string();
-                if s_ip.contains(':') && ip_version == '6'{
+                if s_ip.contains(':') && ip_version == "6"{
                     println!("\nSocket address:\n address: {s_ip}, port: {s_port}")
                 }
-                if s_ip.contains('.') && ip_version == '4'{
+                if s_ip.contains('.') && ip_version == "4"{
                     println!("\nSocket address:\n address: {s_ip}, port: {s_port}")
                 }
             }
