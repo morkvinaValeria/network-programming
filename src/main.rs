@@ -1,5 +1,5 @@
 use getopt::Opt;
-use std::net::{ToSocketAddrs};
+use std::net::{SocketAddr, ToSocketAddrs};
 
 fn main() {
     let args: Vec<String> = std::env::args().collect();
@@ -15,10 +15,7 @@ fn main() {
             Ok(Some(opt)) => match opt {
                 Opt('a', Some(arg)) => node = arg.clone(),
                 Opt('b', Some(arg)) => port = arg.clone(),
-                Opt('v', Some(arg)) => {
-                    let clone = arg.clone();
-                    ip_version = clone.trim();
-                },
+                Opt('v', Some(arg)) => ip_version = arg.clone(),
                 _ => unreachable!(),
             },
             Err(_) => println!("Input is invalid")
@@ -35,10 +32,10 @@ fn main() {
             Some(sock_addr) => {
                 let s_ip = sock_addr.ip().to_string();
                 let s_port = sock_addr.port().to_string();
-                if is_ipv6(sock_addr) && ip_version == "6"{
+                if is_ipv6(sock_addr) && ip_version.trim() == "6"{
                     println!("\nSocket address:\n address: {s_ip}, port: {s_port}")
                 }
-                if is_ipv4(sock_addr) && ip_version == "4"{
+                if is_ipv4(sock_addr) && ip_version.trim() == "4"{
                     println!("\nSocket address:\n address: {s_ip}, port: {s_port}")
                 }
             }
