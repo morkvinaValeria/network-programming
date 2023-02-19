@@ -19,6 +19,6 @@ fn main() {
         }
     }
 
-    let node_plus_port = [network_name, port].join(":");
+    let node_plus_port = [node, port].join(":");
     println!("{}", node_plus_port);
 }
