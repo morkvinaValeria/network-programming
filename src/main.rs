@@ -2,6 +2,7 @@ use getopt::Opt;
 
 fn main() {
     // args = ["network_address", "network_name", "port"];
+    let mut args: Vec<String> = std::env::args().collect();
     let mut opts = getopt::Parser::new(&args, "a:b:c:");
 
     let mut a_flag = String::new();
