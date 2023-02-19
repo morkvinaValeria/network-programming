@@ -9,16 +9,18 @@ fn main() {
     let mut port = String::new();
 
     loop {
-        match opts.next().transpose()? {
-            None => break,
-            Some(opt) => match opt {
+        match opts.next().transpose() {
+            Ok(None) => break,
+            Ok(Some(opt)) => match opt {
                 Opt('a', Some(arg)) => network_address = arg.clone(),
                 Opt('b', Some(arg)) => network_name = arg.clone(),
                 Opt('c', Some(arg)) => port = arg.clone(),
                 _ => unreachable!(),
             },
+            Err(_) => println!("Input is invalid")
         }
     }
+
     let network_address_plus_port = [network_address, port].join(":");
     let network_name_plus_port = [network_name, port].join(":");
     println!("{}", network_address_plus_port);
