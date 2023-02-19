@@ -21,7 +21,7 @@ fn main() {
         }
     }
 
-    let network_address_plus_port = [network_address, port].join(":");
+    let network_address_plus_port = [network_address, port.clone()].join(":");
     let network_name_plus_port = [network_name, port.clone()].join(":");
     println!("{}", network_address_plus_port);
     println!("{}", network_name_plus_port);
