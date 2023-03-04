@@ -15,7 +15,7 @@ fn main() {
             Ok(Some(opt)) => match opt {
                 Opt('a', Some(arg)) => node = arg.clone(),
                 Opt('b', Some(arg)) => port = arg.clone(),
-                Opt('v', Some(arg)) => ip_version = arg.clone(),
+                Opt('v', Some(arg)) => ip_version = arg.clone().unwrap(),
                 _ => unreachable!(),
             },
             Err(_) => println!("Input is invalid")
