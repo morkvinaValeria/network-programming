@@ -7,7 +7,7 @@ fn main() {
 
     let mut node = String::new();
     let mut port = String::new();
-    let mut ip_version = String::new();
+    let mut ip_version = "0";
 
     loop {
         match opts.next().transpose() {
@@ -32,10 +32,12 @@ fn main() {
             Some(sock_addr) => {
                 let s_ip = sock_addr.ip().to_string();
                 let s_port = sock_addr.port().to_string();
-                if sock_addr.is_ipv6() && ip_version.trim() == "6"{
+                let ip_version_trim = ip_version.trim();
+                if (ip_version_trim == "0"){
+                    println!("\nSocket addresses:\n address: {s_ip}, port: {s_port}")
+                } else if sock_addr.is_ipv6() && ip_version_trim == "6"{
                     println!("\nSocket IpV6 addresses:\n address: {s_ip}, port: {s_port}")
-                }
-                if sock_addr.is_ipv4() && ip_version.trim() == "4"{
+                }else if sock_addr.is_ipv4() && ip_version_trim == "4"{
                     println!("\nSocket IpV4 addresses:\n address: {s_ip}, port: {s_port}")
                 }
             }
