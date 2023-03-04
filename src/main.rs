@@ -7,7 +7,7 @@ fn main() {
 
     let mut node = String::new();
     let mut port = String::new();
-    let mut ip_version = "0";
+    let mut ip_version = String::from("0");
 
     loop {
         match opts.next().transpose() {
