@@ -33,7 +33,7 @@ fn main() {
                 let s_ip = sock_addr.ip().to_string();
                 let s_port = sock_addr.port().to_string();
                 let ip_version_trim = ip_version.trim();
-                if (ip_version_trim == "0"){
+                if ip_version_trim == "0"{
                     println!("\nSocket addresses:\n address: {s_ip}, port: {s_port}")
                 } else if sock_addr.is_ipv6() && ip_version_trim == "6"{
                     println!("\nSocket IpV6 addresses:\n address: {s_ip}, port: {s_port}")
